@@ -1,0 +1,8 @@
+.expanded-container{
+    width: 100%;
+    overflow-x: scroll;
+    font-size: 12px;
+    position: relative;
+   /* white-space: nowrap;*/
+}
+
