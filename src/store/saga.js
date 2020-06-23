@@ -37,10 +37,36 @@ function* fetchRack() {
 }
 
 
+function* fetchRequest() {
+  console.log("getRequestProfile");
+    const json = yield call(() =>
+    fetch("claritybqm/reportFetch/?scriptName=ITDAS_REQUEST_LIST")
+      .then(response => response.json())
+      .then(data => data )
+  );
+
+
+  yield put({ type: "FETCH_DATA_REQUEST", value: json });
+  console.log(json)
+}
+
+
+
+// fetch('claritybqm/reportFetch/?scriptName=ITDAS_REQUEST_LIST')
+// .then(
+//     response => response.json()
+// )
+// .then(json => {
+//     console.log(json)
+//     this.setState({data: json})
+// });
+
+
 
 export function* watchFetchData() {
   yield takeEvery("FETCH_USER", fetchUpAsync);
  // yield takeEvery("FETCH_BADGE", fetchBadge);
   yield takeEvery("FETCH_RACK", fetchRack);
+  yield takeEvery("FETCH_REQUEST", fetchRequest);
  
 }
