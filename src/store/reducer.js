@@ -5,6 +5,7 @@ const initialState = {
     items1:[],
     rack:{},
     rackItems:[],
+    data:[]
 
 };
 
@@ -30,6 +31,14 @@ const reducer = (state=initialState, action) => {
             case 'FETCH_DATA_RACK': 
 
             newState.rack = action.value;
+            //newState.rackItems = action.value.RACK_ID
+
+
+            case 'FETCH_DATA_REQUEST': 
+
+            newState.data = action.value;
+
+            
             //newState.rackItems = action.value.RACK_ID
 
             break;

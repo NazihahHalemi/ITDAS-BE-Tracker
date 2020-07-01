@@ -56,6 +56,7 @@ const RequestProfile = React.lazy(() => import('./views/ITDAS Tracker/RequestPro
 const Requestor = React.lazy(() => import('./views/ITDAS Tracker/Requestor'));
 const MandaysProfile = React.lazy(() => import('./views/ITDAS Tracker/MandaysProfile'));
 const BudgetProfile = React.lazy(() => import('./views/ITDAS Tracker/BudgetProfile'));
+const RequestList = React.lazy(() => import('./views/ITDAS Tracker/listRequest'));
 
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
@@ -78,6 +79,7 @@ const routes = [
   { path: '/taskList', name: 'Task List', component: TaskList },
   { path: '/pendingApproval', name: 'Waiting Approval', component: PendingApproval },
   { path: '/myTask', name: 'My Task', component: myTask },
+  { path: '/RequestList', name: 'Request List', component: RequestList },
   { path: '/RequestProfile', name: 'Request Profile', component: RequestProfile },
   { path: '/Requestor', name: 'Requestor', component: Requestor },
   { path: '/MandaysProfile', name: 'Mandays Profile', component: MandaysProfile },

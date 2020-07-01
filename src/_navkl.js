@@ -57,6 +57,11 @@ export default {
       icon: 'icon-puzzle',
       children: [
         {
+          name: 'Request List',
+          url: '/RequestList',
+          icon: 'icon-layers',
+        },
+        {
           name: 'Request Profile',
           url: '/RequestProfile',
           icon: 'icon-layers',
