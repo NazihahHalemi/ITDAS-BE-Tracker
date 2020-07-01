@@ -43,7 +43,7 @@ class budgetProfile extends Component {
           <Col xs ='12'>
           <Card >
             <CardHeader>
-            <strong>BUDGET PROFILE </strong>
+            <strong>BUDGET PROFILE</strong>
             </CardHeader>
               <CardBody>
                 <Row>
@@ -81,8 +81,10 @@ class budgetProfile extends Component {
                    <option value="Yes">Yes</option>
                    <option value="No">No</option>
                   </Input>
+                  </Col>
+                  <Col xs='3'>
                   <Label>MOT Send to User</Label>
-                  <Input type="select" name="requestorMOT" id="requestorMOT">
+                  <Input type="select" name="MOTtouser" id="MOTtouser">
                    <option value="">Please select</option>
                    <option value="Yes">Yes</option>
                    <option value="No">No</option>
@@ -90,7 +92,7 @@ class budgetProfile extends Component {
                   </Col>
                   <Col xs='3'>
                   <Label>Date Sending</Label>
-                  <Input type="date" id="budgetmemodate"name="budgetmemodate"/>    
+                  <Input type="date" id="datesending"name="datesending"/>    
                 </Col>
            </Row>
           </CardBody>
@@ -100,13 +102,13 @@ class budgetProfile extends Component {
                 <Row>
                   <Col xs='3'>
                   <Label>MOT Received</Label>
-                  <Input type="select" name="requestorMOT" id="requestorMOT">
+                  <Input type="select" name="MOTreceived" id="MOTreceived">
                    <option value="">Please select</option>
                    <option value="Yes">Yes</option>
                    <option value="No">No</option>
                   </Input> 
                   </Col>
-                  <Col xs='3'>
+                  <Col xs='6'>
                   <Label>Remarks</Label>
                   <Input type="textarea" id="remarks"name="remarks"/>   
                 </Col>
@@ -124,16 +126,43 @@ class budgetProfile extends Component {
                   <Label>BE Received Date</Label>
                   <Input type="date" id="BEreceiveddate"name="BEreceiveddate"/>
                   </Col>
-                  <Col xs='3'>
-                  <Label>ITDC Approved Date</Label>
-                  <Input type="date" id="ITDCapproveddate"name="ITDCapproveddate"/>
-                  <Label>IBER Approved Date</Label>
-                  <Input type="date" id="IBERapproveddate"name="IBERapproveddate"/>
+
+                  <Col xs="12" sm="6" md="4">
+                  <Card className="border-primary">
+                  <CardHeader>
+                   Design & Mandays Approval
+                  </CardHeader>
+                  <CardBody>
+                  <Col xs='8'>
+                  <Label>ITDC Approved Ball Park</Label>
+                  <Input type="date" id="ITDCapprovedballpark"name="ITDCapprovedballpark"/>
+                  <Label>ITDC Approved Final</Label>
+                  <Input type="date" id="ITDCapprovedfinal"name="ITDCapprovedfinal"/>
                   </Col>
-                  <Col xs='3'>
-                  <Label>PCM/PSC Approved Date</Label>
-                  <Input type="date" id="PCMPSCapproveddate"name="PCMPSCapproveddate"/>
+                  </CardBody>
+                  </Card>
                   </Col>
+
+                  <Col xs="12" sm="6" md="5">
+                  <Card className="border-primary">
+                  <CardHeader>
+                   Business Case Approval
+                  </CardHeader>
+                  <CardBody>
+                  <Col xs='8'>
+                  <Label>IBER Approved Ball Park</Label>
+                  <Input type="date" id="IBERapprovedballpark"name="IBERapprovedblackpark"/>
+                  <Label>IBER Approved Final</Label>
+                  <Input type="date" id="IBERapprovedfinal"name="IBERapprovedfinal"/>
+                  <Label>PCM1/PSC Approved </Label>
+                  <Input type="date" id="IBERapprovedballpark"name="IBERapprovedblackpark"/>
+                  <Label>PCM2/PSC Approved </Label>
+                  <Input type="date" id="IBERapprovedfinal"name="IBERapprovedfinal"/>
+                  </Col>
+                  </CardBody>
+                  </Card>
+                  </Col>
+
                   </Row>
                 </CardBody>
               </Card>
