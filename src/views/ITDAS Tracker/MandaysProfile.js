@@ -26,6 +26,7 @@ import {
   Table,
 } from 'reactstrap';
 
+
 class mandaysProfile extends Component {
   constructor(props) {
     super(props);
@@ -33,11 +34,42 @@ class mandaysProfile extends Component {
     this.state = {
       collapse: true,
       fadeIn: true,
-      timeout: 300
+      timeout: 300,
+      LovSystem:{},
+      LovPillar:{},
     };
   }
 
+  componentDidMount(){
+    // console.log('test');
+   this.lovSystem();
+   this.lovPillar();
+   }
+
+   lovSystem(){
+
+    fetch("/claritybqm/reportFetch/?scriptName=ITD_LOV&type=SYSTEM")
+    .then(response =>  response.json())
+    .then(result =>  {
+     //console.log('lovCatType-result',result.data);
+      this.setState({ LovSystem : result.data })
+     })
+   }
+
+   lovPillar(){
+
+    fetch("/claritybqm/reportFetch/?scriptName=ITD_LOV&type=PILLAR")
+    .then(response =>  response.json())
+    .then(result =>  {
+     //console.log('lovCatType-result',result.data);
+      this.setState({ LovPillar : result.data })
+     })
+   }
+  
   render() {
+
+    var pillar = this.state.LovPillar
+    var system = this.state.LovSystem
     return (
       <div className="animated fadeIn">
         <Row>
@@ -51,7 +83,15 @@ class mandaysProfile extends Component {
                 
                 <Col xs='3'>
                 <Label>PIP Pillar</Label>
-                <Input type="text" id="PIPpillar"name="PIPpillar"/>
+                <Input type="select" id="PIPpillar"name="PIPpillar">
+                <option value="0">Please select</option>
+                {
+                  Object.values(pillar).map((d)=>{
+                   //console.log('data', d.LOV_VALUE)
+                   return <option key={d.LOV_VALUE} value={d.LOV_VALUE}>{d.LOV_VALUE}</option>
+                 })
+               }
+                </Input>
                 </Col>
 
                 <Col xs='2'>
@@ -62,7 +102,7 @@ class mandaysProfile extends Component {
 
                 <Col xs='3'>
                 <Label>MD Category</Label>
-                <Input type="select" name="select" id="select">
+                <Input type="select" name="mdcategory" id="mdcategory">
                         <option value="0">Please select</option>
                         <option value="Simple">Simple (less or equal 50)</option>
                         <option value="Medium">Medium (less or equal 250)</option>
@@ -130,9 +170,18 @@ class mandaysProfile extends Component {
 
                 <Col xs='3'>
                 <Label>Impacted Sytem</Label>
-                <Input type="text" id="impactedSystem"name="impactedSystem"/>
+                <Input type="select" id="impactedSystem"name="impactedSystem">
+                <option value="0">Please select</option>
+                {
+                  Object.values(system).map((d)=>{
+                   //console.log('data', d.LOV_VALUE)
+                   return <option key={d.LOV_VALUE} value={d.LOV_VALUE}>{d.LOV_VALUE}</option>
+                 })
+               }
+               </Input>
                 <button class="btn btn-primary" type="submit">Add</button>
                 </Col>
+
                 <Col xs='3'>
                 <Label>Mandays</Label>
                 <Input type="text" id="mandays"name="mandays" />
@@ -144,9 +193,17 @@ class mandaysProfile extends Component {
                 <Input type="text" id="mandays"name="mandays" />
                 
                 </Col>
-                <Col xs='2'>
+                <Col xs='3'>
                 <Label>Systems</Label>
-                <Input type="text" id="system"name="system" />
+                <Input type="select" id="System"name="System">
+                <option value="0">Please select</option>
+                {
+                  Object.values(system).map((d)=>{
+                   //console.log('data', d.LOV_VALUE)
+                   return <option key={d.LOV_VALUE} value={d.LOV_VALUE}>{d.LOV_VALUE}</option>
+                 })
+               }
+               </Input>
                 <button class="btn btn-primary" type="submit">Add</button>
                 </Col>
 
@@ -217,6 +274,19 @@ class mandaysProfile extends Component {
                 
               </Row>
             </CardBody>
+
+            <CardFooter>
+            <div className="form-button">
+            <Row style={{ marginBottom: '20px' }}>
+            <Col xs='3'>
+                <Button type="back" size="sm" color="primary"> Back</Button>
+                <Button type="save" size="sm" color="success"> Save</Button>
+                <Button type="next" size="sm" color="danger"> Next</Button>
+                </Col>
+              </Row>
+              </div>
+            </CardFooter>
+
           </Card>
           </Col>
           

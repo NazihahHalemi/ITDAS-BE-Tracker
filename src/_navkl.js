@@ -9,58 +9,68 @@ export default {
         text: 'NEW',
       },
     },
-    {
-      name: 'Inventory',
-      url: '/inventory',
-      icon: 'icon-puzzle',
-      children: [
-        {
-          name: 'Rack',
-          url: '/rackList',
-          icon: 'icon-layers',
-        },
-        {
-          name: 'Netwrok Port',
-          url: '/network_port',
-          icon: 'icon-layers',
-        },
-        {
-          name: 'Network Bandwidth',
-          url: '/network_bandwidth',
-          icon: 'icon-layers',
-        },
-        {
-          name: 'UPS',
-          url: '/upsList',
-          icon: 'icon-layers',
-        },
-        {
-          name: 'PDU',
-          url: '/pduList',
-          icon: 'icon-layers',
-        },
-        {
-          name: 'CRAC',
-          url: '/CRACList',
-          icon: 'icon-layers',
-        },
-      ]
-    },
-    {
-      name: 'Resource Checking',
-      url: '/resourceChecking',
-      icon: 'icon-puzzle',
-    },
+    // {
+    // //   name: 'Inventory',
+    //   url: '/inventory',
+    //   icon: 'icon-puzzle',
+    //   children: [
+    //     {
+    //       name: 'Rack',
+    //       url: '/rackList',
+    //       icon: 'icon-layers',
+    //     },
+    //     {
+    //       name: 'Netwrok Port',
+    //       url: '/network_port',
+    //       icon: 'icon-layers',
+    //     },
+    //     {
+    //       name: 'Network Bandwidth',
+    //       url: '/network_bandwidth',
+    //       icon: 'icon-layers',
+    //     },
+    //     {
+    //       name: 'UPS',
+    //       url: '/upsList',
+    //       icon: 'icon-layers',
+    //     },
+    //     {
+    //       name: 'PDU',
+    //       url: '/pduList',
+    //       icon: 'icon-layers',
+    //     },
+    //     {
+    //       name: 'CRAC',
+    //       url: '/CRACList',
+    //       icon: 'icon-layers',
+    //     },
+    //   ]
+    // },
+    // {
+    //   name: 'Resource Checking',
+    //   url: '/resourceChecking',
+    //   icon: 'icon-puzzle',
+    // },
     {
       name: 'ITDAS Tracker',
       url: '/',
       icon: 'icon-puzzle',
       children: [
+        // {
+        //   name: 'Homepage',
+        //   url: '/Homepage',
+        //   icon: 'icon-layers',
+        // },
         {
-          name: 'Request List',
-          url: '/RequestList',
+          name: 'LandingPage',
+          url: '/LandingPage',
           icon: 'icon-layers',
         },
+        // {
+        //   name: 'Request List',
+        //   url: '/RequestList',
+        //   icon: 'icon-layers',
+        // },
         {
           name: 'Request Profile',
           url: '/RequestProfile',
@@ -92,11 +102,11 @@ export default {
   //     },
   //     class: ''            // optional class names space delimited list for title item ex: "text-center"
   //   },
-  //   {
-  //     name: 'Colors',
-  //     url: '/theme/colors',
-  //     icon: 'icon-drop',
-  //   },
+    // {
+    //    name: 'Colors',
+    //   url: '/theme/colors',
+    //    icon: 'icon-drop',
+    // },
   //   {
   //     name: 'Typography',
   //     url: '/theme/typography',
@@ -110,98 +120,98 @@ export default {
   //       attributes: {},
   //     },
   //   },
-     {
-      name: 'Base',
-      url: '/base',
-      icon: 'icon-puzzle',
-      children: [
-        {
-          name: 'Breadcrumbs',
-          url: '/base/breadcrumbs',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Gant',
-          url: '/gant',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Cards',
-          url: '/base/cards',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Carousels',
-          url: '/base/carousels',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Collapses',
-          url: '/base/collapses',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Dropdowns',
-          url: '/base/dropdowns',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Forms',
-          url: '/base/forms',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Jumbotrons',
-          url: '/base/jumbotrons',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'List groups',
-          url: '/base/list-groups',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Navs',
-          url: '/base/navs',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Paginations',
-          url: '/base/paginations',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Popovers',
-          url: '/base/popovers',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Progress Bar',
-          url: '/base/progress-bar',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Switches',
-          url: '/base/switches',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Tables',
-          url: '/base/tables',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Tabs',
-          url: '/base/tabs',
-          icon: 'icon-puzzle',
-        },
-        {
-          name: 'Tooltips',
-          url: '/base/tooltips',
-          icon: 'icon-puzzle',
-        },
-      ],
-    },
+    //  {
+    //   name: 'Base',
+    //   url: '/base',
+    //   icon: 'icon-puzzle',
+    //   children: [
+    //     {
+    //       name: 'Breadcrumbs',
+    //       url: '/base/breadcrumbs',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Gant',
+    //       url: '/gant',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Cards',
+    //       url: '/base/cards',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Carousels',
+    //       url: '/base/carousels',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Collapses',
+    //       url: '/base/collapses',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Dropdowns',
+    //       url: '/base/dropdowns',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Forms',
+    //       url: '/base/forms',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Jumbotrons',
+    //       url: '/base/jumbotrons',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'List groups',
+    //       url: '/base/list-groups',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Navs',
+    //       url: '/base/navs',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Paginations',
+    //       url: '/base/paginations',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Popovers',
+    //       url: '/base/popovers',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Progress Bar',
+    //       url: '/base/progress-bar',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Switches',
+    //       url: '/base/switches',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Tables',
+    //       url: '/base/tables',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Tabs',
+    //       url: '/base/tabs',
+    //       icon: 'icon-puzzle',
+    //     },
+    //     {
+    //       name: 'Tooltips',
+    //       url: '/base/tooltips',
+    //       icon: 'icon-puzzle',
+    //     },
+    //   ],
+    // },
     // {
     //   name: 'Buttons',
     //   url: '/buttons',

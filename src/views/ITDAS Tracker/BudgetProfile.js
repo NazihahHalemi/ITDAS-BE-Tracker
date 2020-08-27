@@ -165,6 +165,18 @@ class budgetProfile extends Component {
 
                   </Row>
                 </CardBody>
+
+                <CardFooter>
+            <div className="form-button">
+            <Row style={{ marginBottom: '20px' }}>
+              <Col>
+                <Button type="back" size="sm" color="primary"> Back</Button>
+                <Button type="save" size="sm" color="success"> Save</Button>
+                <Button type="next" size="sm" color="dark"> Home</Button>
+                </Col>
+              </Row>
+              </div>
+            </CardFooter>
               </Card>
 
          
