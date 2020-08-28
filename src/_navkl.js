@@ -56,41 +56,46 @@ export default {
       url: '/',
       icon: 'icon-puzzle',
       children: [
+        {
+          name: 'List BE',
+          url: '/LandingPage',
+          icon: 'icon-layers',
+        },
+        {
+          name: 'Create BE',
+          url: '/CreateBE',
+          icon: 'icon-layers',
+        },
         // {
         //   name: 'Homepage',
         //   url: '/Homepage',
         //   icon: 'icon-layers',
         // },
-        {
-          name: 'LandingPage',
-          url: '/LandingPage',
-          icon: 'icon-layers',
-        },
         // {
         //   name: 'Request List',
         //   url: '/RequestList',
         //   icon: 'icon-layers',
         // },
-        {
-          name: 'Request Profile',
-          url: '/RequestProfile',
-          icon: 'icon-layers',
-        },
-      {
-        name: 'Requestor',
-        url: '/Requestor',
-        icon: 'icon-layers',
-      },
-      {
-        name: 'Mandays Profile',
-        url: '/MandaysProfile',
-        icon: 'icon-layers',
-      },
-      {
-        name: 'Budget Profile',
-        url: '/BudgetProfile',
-        icon: 'icon-layers',
-      },
+    //     {
+    //       name: 'Request Profile',
+    //       url: '/RequestProfile',
+    //       icon: 'icon-layers',
+    //     },
+    //   {
+    //     name: 'Requestor',
+    //     url: '/Requestor',
+    //     icon: 'icon-layers',
+    //   },
+      // {
+      //   name: 'Mandays Profile',
+      //   url: '/MandaysProfile',
+      //   icon: 'icon-layers',
+      // },
+    //   {
+    //     name: 'Budget Profile',
+    //     url: '/BudgetProfile',
+    //     icon: 'icon-layers',
+    //   },
       ]
     },
   //   {

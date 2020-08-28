@@ -53,6 +53,7 @@ const TaskList = React.lazy(() => import('./views/TaskList/taskList'));
 const PendingApproval = React.lazy(() => import('./views/TaskList/pendingApproval'));
 const myTask = React.lazy(() => import('./views/TaskList/myTask'));
 const RequestProfile = React.lazy(() => import('./views/ITDAS Tracker/RequestProfile'));
+const CreateBE = React.lazy(() => import('./views/ITDAS Tracker/CreateBE'));
 const Requestor = React.lazy(() => import('./views/ITDAS Tracker/Requestor'));
 const MandaysProfile = React.lazy(() => import('./views/ITDAS Tracker/MandaysProfile'));
 const BudgetProfile = React.lazy(() => import('./views/ITDAS Tracker/BudgetProfile'));
@@ -82,6 +83,7 @@ const routes = [
   { path: '/myTask', name: 'My Task', component: myTask },
   { path: '/RequestList', name: 'Request List', component: RequestList },
   { path: '/RequestProfile', name: 'Request Profile', component: RequestProfile },
+  { path: '/CreateBE', name: 'CreateBE', component: CreateBE },
   { path: '/Requestor', name: 'Requestor', component: Requestor },
   { path: '/MandaysProfile', name: 'Mandays Profile', component: MandaysProfile },
   { path: '/BudgetProfile', name: 'Budget Profile', component: BudgetProfile },

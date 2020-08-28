@@ -32,7 +32,7 @@ class LandingPage extends Component {
 
 componentDidMount(){
     
-    fetch("/claritybqm/reportFetch/?scriptName=ITD_REQUEST_LIST")
+    fetch("claritybqm/reportFetch/?scriptName=ITD_REQUEST_LIST")
     .then(response =>  response.json())
     .then(result =>  {
       console.log('result',result);
@@ -87,7 +87,7 @@ componentDidMount(){
     <MaterialTable
       columns={columns}
       data={data}
-      title="Pre-BE/Non BE"
+      title="Search Pre-BE/Non BE"
       icons={tableIcons} 
       options={{    
         //hover: true,
