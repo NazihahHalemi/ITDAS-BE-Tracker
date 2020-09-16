@@ -73,7 +73,7 @@ class Login extends Component {
                       <Row>
                         <Col xs="6">
                           <Button color="primary" className="px-4"   onClick={() => {
-                            auth.handleLogin(this.state.username,this.state.password,() => {
+                            auth.handleLogin2(this.state.username,this.state.password,() => {
                               this.props.history.push("/");
                             });
                           }} 

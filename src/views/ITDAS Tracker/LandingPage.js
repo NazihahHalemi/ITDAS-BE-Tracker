@@ -32,11 +32,17 @@ class LandingPage extends Component {
 
 componentDidMount(){
     
-    fetch("claritybqm/reportFetch/?scriptName=ITD_REQUEST_LIST")
+  var accessToken = localStorage.getItem('token');  
+  fetch("/api/ITD_REQUEST_LIST",
+  {
+    headers: {
+      Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+    }
+   })
     .then(response =>  response.json())
     .then(result =>  {
       console.log('result',result);
-      this.setState({dataRequest : result})
+      this.setState({dataRequest : result.request})
      }
      )
 }

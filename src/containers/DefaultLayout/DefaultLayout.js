@@ -92,7 +92,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  {auth.isAuthenticated().status? <Redirect from="*" to="/dashboard" />: <Redirect from="/" to="/dashboard" />}
+                  {auth.isAuthenticated().status? <Redirect from="*" to="/LandingPage" />: <Redirect from="/" to="/Login" />}
                  
                 </Switch>
               </Suspense>

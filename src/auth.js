@@ -1,5 +1,6 @@
 //import app from "./firebase"
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 //const ldap = require('ldapjs');
 // const client = ldap.createClient({
@@ -44,7 +45,7 @@ class Auth {
 
         if(username != ""){
 
-            fetch('/claritybqm/reportFetch/?scriptName=DC_USER&userid='+ username.toUpperCase())
+            fetch('/api/DC_USER/?userid='+ username.toUpperCase())
             .then(response => response.json())
             .then((user) => //console.log('user', user.user.length)
             {
@@ -68,6 +69,68 @@ class Auth {
        
      
     }
+    handleLogin2 = (user,password,cb,req,res,)   =>  {
+      //console.log('username',username);
+      
+          const dataForm = new FormData();
+          dataForm.append("username", user);
+          dataForm.append("password", password);
+          this.authenticated.status = true;
+          this.authenticated.menuSelected = "";
+          this.authenticated.username = user;
+          this.authenticated.password = password;
+          localStorage.setItem('username', user);
+          localStorage.setItem('password', password);
+          //var 
+      
+          if(user){
+            axios.get('/api/ITD_LDAP_CON11/?userid='+user.toUpperCase()+'&password='+password,
+            ).then((res) => {
+             //console.log('res : ', res.data);  
+             if(res.data.status === 'User Success Login'){
+               axios.get('/api/DC_USER/?userid='+user.toUpperCase(),
+               {
+                headers: {
+                  Authorization: 'Bearer ' + res.data.accessToken //the token is a variable which holds the token
+                }
+               }
+                  ).then(resp => {
+                        const token = localStorage.setItem('token', res.data.accessToken);
+                        //console.log('dc user',resp.data)               
+                        if(!resp.data.user.length){
+                          Swal.fire({
+                            width: '30%',
+                            icon: 'error',
+                            title: 'Invalid DCO User',
+                            text: 'Login error, check with DC Administrator!',
+                            fontsize: '10px'
+                            //footer: '<a href>Why do I have this issue?</a>'
+                          })
+                        }
+                        else{
+                            cb(user,cb,token);  
+                        }
+                
+                  }); 
+                }
+              else{
+                  Swal.fire({
+                    icon: 'error',
+                    text: 'userid:' + user + ' error:' + res.data,
+                  })
+                }
+              })
+              .catch((err) => {/*catch error upon fetch api function*/
+                //console.log('failed to update : ', err);
+                 Swal.fire({
+                  icon: 'error',
+                  text: 'catch:' + err,
+                })
+          })
+  
+         }
+  
+      }
 
 
 
