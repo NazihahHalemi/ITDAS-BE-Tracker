@@ -720,7 +720,7 @@ class CreateBE extends Component {
               <CardHeader>
                 {/* <i className="fa fa-align-justify"></i>  */}
                 <i className="animated fadeIn"></i>
-                <strong>Create Pre-BE/Non-BE</strong>
+                <strong>Create Pre-BE/Non-BE test</strong>
                 {/* <div className="card-header-actions">
                   <Badge>NEW</Badge>
                 </div> */}
