@@ -925,7 +925,6 @@ class CreateBE extends Component {
             return(<tr>
             <td>
               {index+1}
-                
             </td>
             <td>
                 {d.RU_UPDATED_BY}
