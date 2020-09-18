@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import $ from 'jquery';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { FormControl } from '@material-ui/core';
 
 class CreateBE extends Component {
 
@@ -22,6 +23,7 @@ class CreateBE extends Component {
         this.onSubmitVendor = this.onSubmitVendor.bind(this);
         this.addGITAssessors = this.addGITAssessors.bind(this);
         this.onChangeGITAssessors = this.onChangeGITAssessors.bind(this);
+        this.onChageReqType = this.onChageReqType.bind(this);
         // Don't call this.setState() here!
         this.state = {
             data: [],
@@ -44,16 +46,25 @@ class CreateBE extends Component {
             dataRequestor : {},
             dataSysVendor : {},
             dataGITAssessors : {},
+            RUstatusDate: "",
+            RUtype: "",
+            RUdate: "",
+            RURemark: "",
+            RUid:"",
+            ReqEmail:"",
+            RGEMAIL:"",
+            refNo: "",
         };
 
     }
 
     componentDidMount(){
+      //localStorage.setItem('requestorID', '100189')
         // console.log('testt');
         //generate requestor ID:
        //var reqID = localStorage.getItem('requestorID')
        //if(reqID === ""){
-        this.generateRequestorID();
+       this.generateRequestorID();
       // }
        
        this.lovCategory();
@@ -67,8 +78,11 @@ class CreateBE extends Component {
        this.LovGIT();
        this.LovRequestor();
        this.LovVendor();
-       //this.getReqList();
-       
+       this.getReqList();
+       this.getRequestorList();
+       this.getGITAssesor();
+       this.getTMSystem();
+       this.getVendorSystem();
        }
        
        generateRequestorID(){
@@ -126,6 +140,27 @@ class CreateBE extends Component {
          }
          )
        }
+
+       onChageReqType(e){
+
+        var filterType = Object.values(this.state.LovCatType).filter(f=> f.LOV_VALUE == e.target.value)
+        //console.log('type', filterType[0].LOV_VALUE_2);
+        var refType = filterType[0].LOV_VALUE_2;
+        var date = new Date;
+       
+        var month = (date.getMonth() + 1).toString().padStart(2, "0"); // Since getMonth() returns month from 0-11 not 1-12
+        var year = date.getFullYear()+"";
+        var strYear= year.match(/\d{2}$/);
+        var monthYear =  strYear+month;
+        var reqID = localStorage.getItem('requestorID');
+        var refno = refType+"-"+monthYear+"-"+reqID//.toString().slice(-3)
+
+       // console.log('type',refno);
+       this.setState({
+         refNo : refno
+       })
+
+     }
        
        lovSystem(){
         var accessToken = localStorage.getItem('token');
@@ -287,6 +322,83 @@ class CreateBE extends Component {
 
       }
 
+      getRequestorList(){
+        var accessToken = localStorage.getItem('token');
+         var reqID = localStorage.getItem('requestorID');
+           fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
+           {
+             headers: {
+               Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+             }
+           }
+           )
+           .then(response =>  response.json())
+           .then(result =>  {
+             //console.log('getReqList',result);
+             this.setState({ dataRequestor : result.req_requestor })
+           }
+           )   
+ 
+     }
+
+     getGITAssesor(){
+
+        var accessToken = localStorage.getItem('token');
+        var reqID = localStorage.getItem('requestorID');
+        fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
+        {
+          headers: {
+            Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+          }
+        }
+        )
+        .then(response =>  response.json())
+        .then(result =>  {
+          //console.log('getReqList',result);
+          this.setState({ dataGITAssessors : result.req_git })
+        }
+        )   
+
+     }
+    
+     getTMSystem(){
+
+      var accessToken = localStorage.getItem('token');
+      var reqID = localStorage.getItem('requestorID');
+      fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
+      {
+        headers: {
+          Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+        }
+      }
+      )
+      .then(response =>  response.json())
+      .then(result =>  {
+        //console.log('getReqList',result);
+        this.setState({ dataSysTM : result.req_sys_tm })
+      }
+      )   
+
+     }
+
+    getVendorSystem(){
+      var accessToken = localStorage.getItem('token');
+      var reqID = localStorage.getItem('requestorID');
+      fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
+      {
+        headers: {
+          Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+        }
+      }
+      )
+      .then(response =>  response.json())
+      .then(result =>  {
+        //console.log('getReqList',result);
+        this.setState({ dataSysVendor : result.req_sys_vendor })
+      }
+      )   
+    }
+
     toggleAccordion(tab) {
 
         const prevState = this.state.accordion;
@@ -297,10 +409,22 @@ class CreateBE extends Component {
         });
       }
 
-      togglePrimary() {
+      togglePrimary(e,ID) {
         this.setState({
           primary: !this.state.primary,
         });
+
+        if(ID){
+          var filterRU = Object.values(this.state.dataRequest).filter(d=> d.RU_ID == ID)
+          //console.log('RUID',filterRU[0]);
+          this.setState({
+            RUid: ID,
+            RURemark: filterRU[0].RU_REMARK,
+            RUtype: filterRU[0].RU_TYPE,
+            RUdate: filterRU[0].RU_STATUS_DATE
+          })
+        }
+      
       }
 
       handleChangeRemark(e){
@@ -326,8 +450,10 @@ class CreateBE extends Component {
         e.preventDefault();
         var $inputs = $('#addRemark :input');//get form values
         var values = {};
+        var username = localStorage.getItem('username');
         var reqID = localStorage.getItem('requestorID');
-
+        var RUdate =  this.state.RUstatusDate
+    
         $inputs.each(function () {
             if ($(this).is(':radio') == true || $(this).is(':checkbox') == true){
               values[this.name] = $('input[name=' + $(this).attr('name') + ']:checked').val() == undefined ? "" : $('input[name=' + $(this).attr('name') + ']:checked').val();
@@ -337,39 +463,40 @@ class CreateBE extends Component {
             }
             values['REQ_ID'] = reqID;
             values['RU_ID'] = '';
-            values['RU_UPDATED_BY'] = 'TMXXXXX';
-        });
-
-          //console.log('addremark', values);
-          var accessToken = localStorage.getItem('token');
-          axios.post('/api/ITD_REQ_STAT_UPD_CREATE', {data: values},
-          {
-            headers: {
-              Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
-            }
+            values['RU_STATUS_DATE'] = RUdate;
+            values['RU_UPDATED_BY'] = username.toUpperCase();
+         });
+    
+         //console.log('addremark', values);
+         var accessToken = localStorage.getItem('token');
+         axios.post('/api/ITD_REQ_STAT_UPD_CREATE', {data: values},
+         {
+          headers: {
+            Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
           }
-          ).then((res) => {
-            console.log('success to create ', res);   
-            if(res.data.response === "unauthorized") {
-              localStorage.removeItem("token");
-              localStorage.removeItem("requestorID");
-              Swal.fire({
-                  position: 'center',
-                  icon: 'info',
-                  title: 'Your session has timed out!',
-                  showConfirmButton: false,
-                  timer: 1000
-                })
-              setTimeout(function(){ this.props.history.push('/login') }, 2000);
-            
-          }
-            this.getReqList();
-            this.togglePrimary()
-          })
-          .catch((err) => {
-            console.log('failed to create ', err);
-          });
-
+         }
+         ).then((res) => {
+           console.log('success to create ', res);   
+           if(res.data.response === "unauthorized") {
+            localStorage.removeItem("token");
+            localStorage.removeItem("requestorID");
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'Your session has timed out!',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            setTimeout(function(){ this.props.history.push('/login') }, 2000);
+           
+         }
+           this.getReqList();
+           this.togglePrimary()
+         })
+         .catch((err) => {
+           console.log('failed to create ', err);
+         });
+    
 
       }
 
@@ -426,21 +553,23 @@ class CreateBE extends Component {
               timer: 1000
             })
 
-            var accessToken = localStorage.getItem('token');
-            var reqID = localStorage.getItem('requestorID');
-            fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
-            {
-              headers: {
-                Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
-              }
-            }
-            )
-            .then(response =>  response.json())
-            .then(result =>  {
-              //console.log('getReqList',result);
-              this.setState({ dataRequestor : result.req_requestor })
-            }
-            )   
+            // var accessToken = localStorage.getItem('token');
+            // var reqID = localStorage.getItem('requestorID');
+            // fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
+            // {
+            //   headers: {
+            //     Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+            //   }
+            // }
+            // )
+            // .then(response =>  response.json())
+            // .then(result =>  {
+            //   //console.log('getReqList',result);
+            //   this.setState({ dataRequestor : result.req_requestor })
+            // }
+            // )   
+
+            this.getRequestorList();
 
           }
         
@@ -460,7 +589,52 @@ class CreateBE extends Component {
         //console.log({[e.target.name]: e.target.value});
         this.setState({ [e.target.name]: e.target.value });
 
+        if(e.target.name == 'RG_NAME'){
+          if(e.target.value){
+            var filterEmail = Object.values(this.state.LovGIT).filter(r=> r.LOV_VALUE == e.target.value)
+            console.log('emial',filterEmail);
+            this.setState({ 
+              'RG_EMAIL' : filterEmail[0].LOV_VALUE_2,
+              RGEMAIL : filterEmail[0].LOV_VALUE_2
+            });
+          }
+        }
+        else{
+          if(e.target.name == 'RG_EMAIL'){
+              this.setState({ 
+                'RG_EMAIL' : e.target.value,
+                RGEMAIL : e.target.value
+              });
+          }
+        }
+
       }
+
+      onChangeRequestor(e){
+
+        e.preventDefault();
+        //console.log({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value });
+      
+        if(e.target.name == 'RQ_REQUESTOR_NAME'){
+          if(e.target.value){
+            var filterEmail = Object.values(this.state.LovRequestor).filter(r=> r.LOV_VALUE == e.target.value)
+            this.setState({ 
+              'RQ_EMAIL' : filterEmail[0].LOV_VALUE_2,
+              ReqEmail : filterEmail[0].LOV_VALUE_2
+            });
+          }
+        }
+        else{
+          if(e.target.name == 'RQ_EMAIL'){
+              this.setState({ 
+                'RQ_EMAIL' : e.target.value,
+                 ReqEmail : e.target.value
+              });
+          }
+        }
+      }
+      
 
       addGITAssessors(){
         var reqID = localStorage.getItem('requestorID');
@@ -508,22 +682,7 @@ class CreateBE extends Component {
               timer: 1000
             })
 
-            var accessToken = localStorage.getItem('token');
-            var reqID = localStorage.getItem('requestorID');
-            fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
-            {
-              headers: {
-                Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
-              }
-            }
-            )
-            .then(response =>  response.json())
-            .then(result =>  {
-              //console.log('getReqList',result);
-              this.setState({ dataGITAssessors : result.req_requestor })
-            }
-            )   
-
+          this.getGITAssesor()
           }
         
           })
@@ -588,21 +747,7 @@ class CreateBE extends Component {
               timer: 1000
             })
 
-            var accessToken = localStorage.getItem('token');
-            var reqID = localStorage.getItem('requestorID');
-            fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
-            {
-              headers: {
-                Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
-              }
-            }
-            )
-            .then(response =>  response.json())
-            .then(result =>  {
-              //console.log('getReqList',result);
-              this.setState({ dataSysTM : result.req_sys_tm })
-            }
-            )   
+           this.getTMSystem();
 
           }
         
@@ -624,6 +769,7 @@ class CreateBE extends Component {
       }
 
       onSubmitVendor(){
+        //console.log('vendorsubmit');
         var reqID = localStorage.getItem('requestorID');
 
         if(this.state.IM_VENDOR || this.state.IM_SYSTEMS || this.state. IM_MANDAYS){
@@ -668,21 +814,7 @@ class CreateBE extends Component {
               timer: 1000
             })
 
-            var accessToken = localStorage.getItem('token');
-            var reqID = localStorage.getItem('requestorID');
-            fetch("/api/ITD_REQUEST_LIST/?REQ_ID=" + reqID,
-            {
-              headers: {
-                Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
-              }
-            }
-            )
-            .then(response =>  response.json())
-            .then(result =>  {
-              //console.log('getReqList',result);
-              this.setState({ dataSysVendor : result.req_sys_vendor })
-            }
-            )   
+           this.getVendorSystem();
 
           }
         
@@ -694,6 +826,114 @@ class CreateBE extends Component {
         }
 
       }
+
+      deleteRU(e,ID){
+
+        e.preventDefault();
+        var accessToken = localStorage.getItem('token');
+    
+        axios.post('/api/ITD_REQ_STAT_UPD_DELETE', {data: {'RU_ID': ID}},
+        {
+         headers: {
+           Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+         }
+        }
+        ).then((res) => {
+          console.log('success to delete ', res);   
+          if(res.data.response === "unauthorized") {
+           localStorage.removeItem("token");
+           localStorage.removeItem("requestorID");
+           Swal.fire({
+               position: 'center',
+               icon: 'info',
+               title: 'Your session has timed out!',
+               showConfirmButton: false,
+               timer: 1000
+             })
+           setTimeout(function(){ this.props.history.push('/login') }, 2000);
+          
+        }
+          this.getReqList();
+         // this.togglePrimary()
+        })
+        .catch((err) => {
+          console.log('failed to create ', err);
+        });
+
+      }
+
+      onChangeDate(e){
+        var Inputdate = e.target.value
+        let arr = Inputdate.split('-') //now we get array of these and we can made in any format as we want
+        let dateFormat = arr[2] + "/" + arr[1] + "/" + arr[0]  //In dd-mm-yyyy format
+        //console.log('date',Inputdate);
+        this.setState({
+          RUstatusDate : dateFormat
+        })
+      }
+  
+      //main - submit BE
+    handleSubmitBE(e){
+
+      e.preventDefault();
+      var $inputs = $('#submitBE :input');//get form values
+      var values = {};
+      var username = localStorage.getItem('username');
+    
+      $inputs.each(function () {
+          if ($(this).is(':radio') == true || $(this).is(':checkbox') == true){
+            values[this.name] = $('input[name=' + $(this).attr('name') + ']:checked').val() == undefined ? "" : $('input[name=' + $(this).attr('name') + ']:checked').val();
+                } 
+                else {
+            values[this.name] = $(this).val() == undefined ? "" : $(this).val();
+          }
+          values['REQ_INSERT_BY'] = username.toUpperCase()
+       });
+  
+      //console.log('valueBE',values);
+
+       var accessToken = localStorage.getItem('token');
+       axios.post('/api/ITD_REQUEST_CREATE', {data: values},
+       {
+       headers: {
+         Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
+       }
+       }
+       ).then((res) => {
+         console.log('success to create ', res);   
+         //timeout process
+         if(res.data.response === "unauthorized") {
+         localStorage.removeItem("token");
+         localStorage.removeItem("requestorID");
+         Swal.fire({
+             position: 'center',
+             icon: 'info',
+             title: 'Your session has timed out!',
+             showConfirmButton: false,
+             timer: 1000
+           })
+         setTimeout(function(){ this.props.history.push('/login') }, 2000);
+         
+       }
+       //success
+       else{
+         Swal.fire({
+           position: 'center',
+           icon: 'info',
+           title: 'Data has been created.',
+           showConfirmButton: false,
+           timer: 1000
+         })
+         setTimeout(function(){ this.props.history.push('/LandingPage') }, 2000);
+
+       }
+     
+       })
+       .catch((err) => {
+         console.log('failed to create ', err);
+       });
+
+    }
 
     render() {
         var category = this.state.Lovcategory
@@ -725,12 +965,13 @@ class CreateBE extends Component {
                   <Badge>NEW</Badge>
                 </div> */}
               </CardHeader>
+              <Form id="submitBE" onSubmit={this.handleSubmitBE}>
               <div className="form-button">
                 <Row style={{ marginTop: '20px' }}>
                 <Col style={{ marginLeft: '20px' }}>
                     <Button type="reset" color="primary"> Reset</Button>
-                    <Button type="save" color="success"> Save</Button>
-                    <Button type="next" color="dark"> Submit</Button>
+                    <Button type="submit" color="success"> Save</Button>
+                    <Button type="submit" color="dark"> Submit</Button>
                 </Col>
                 </Row>
                 </div>
@@ -747,14 +988,16 @@ class CreateBE extends Component {
                       <CardBody>
               <Row>
                 <Col xs='3'>
+                <FormControl hidden={true}>
                 <Label>Requestor ID</Label>
                 <Input type="text" id="REQ_ID"name="REQ_ID" value={reqID} readOnly/>
+                </FormControl>
                 <Label>Reference #</Label>
-                <Input type="text" id="REQ_REF_NO"name="REQ_REF_NO"/>
+                <Input type="text" id="REQ_REF_NO"name="REQ_REF_NO" value={this.state.refNo} readOnly/>
                 <Label>Ext Ref # (IRIS No/Proj No)</Label>
                 <Input type="text" id="REQ_EXT_NO"name="REQ_EXT_NO"/>
                 <Label >Category</Label>
-                <Input type="select" name="category" id="category" onChange={this.lovCatType}>
+                <Input type="select" name="REQ_CATEGORY" id="REQ_CATEGORY" onChange={this.lovCatType}>
                 <option value="">Please select</option>
                         {
                            Object.values(category).map((d)=>{
@@ -764,7 +1007,7 @@ class CreateBE extends Component {
                         }
                 </Input>
                 <Label>Type</Label>
-                <Input type="select" name="type" id="type">
+                <Input type="select"  name="REQ_TYPE" id="REQ_TYPE" onChange={this.onChageReqType}>
                         <option value="">Please select</option>
                         {/* <option value="product">Product</option>
                         <option value="non-product">Non-Product</option> */}
@@ -879,7 +1122,7 @@ class CreateBE extends Component {
                         </Col>
                         <Col>
                         <Label>Status Date</Label>
-                        <Input type="date" id="RU_STATUS_DATE" name="RU_STATUS_DATE" onChange={this.handleChangeRemark}/>
+                        <Input type="date" id="RU_STATUS_DATE" name="RU_STATUS_DATE" onChange={this.handleChangeRemark}  onChange={this.onChangeDate.bind(this)}/>
                         </Col>
                     </Row>
                     <Row>
@@ -890,14 +1133,14 @@ class CreateBE extends Component {
                     </Row>
                     <Row style={{marginTop: '20px'}}>
                         <Col>
-                         <Button color="primary" type="submit" >Add</Button>{' '}
+                         <Button color="primary" type="submit">Add / UPDATE</Button>{' '}
                         </Col>
-                        <Col>
+                        {/* <Col>
                         <Button color="success" type="submit">Update</Button>
                         </Col>
                         <Col>
                         <Button color="warning" type="submit" >Delete</Button>
-                        </Col>
+                        </Col> */}
                     </Row>
                     </Form>
                   </ModalBody>
@@ -935,16 +1178,23 @@ class CreateBE extends Component {
 
             </td>
             <td>
-                {/* {d.RU_STATUS_DATE} */}
+                {d.RU_STATUS_DATE}
             </td>
             <td>
-                {/* {d.RU_UPDATED_DATE} */}
+                {d.RU_UPDATED_DATE}
             </td>
             <td>
                 {d.RU_REMARK}
             </td>
             <td>
-
+            <Row>
+                <Col>
+                  <Button color="success" onClick={(e)=>this.togglePrimary(e,d.RU_ID)} >Update</Button>
+                  </Col>
+                  <Col>
+                  <Button color="warning" onClick={(e)=> this.deleteRU(e,d.RU_ID)}>Delete</Button>
+                </Col>
+              </Row>
             </td>
 
         </tr>
@@ -999,7 +1249,7 @@ class CreateBE extends Component {
                   </Col>
                   <Col xs='3'>
                 <Label>Email Address</Label>
-                <Input type="text" id="RQ_EMAIL"name="RQ_EMAIL" onChange={this.onChangeRequestor}/>
+                <Input type="text" id="RQ_EMAIL"name="RQ_EMAIL" onChange={this.onChangeRequestor}  value={this.state.ReqEmail}/>
                 </Col>
                 <Col xs='1' style={{marginLeft: '30px', marginTop: '25px'}}>
                 <Button block color="primary" type="submit" onClick={this.addRequestor}> Add</Button>
@@ -1143,7 +1393,7 @@ class CreateBE extends Component {
                 
                 <Col xs='3'>
                 <Label>Email Address</Label>
-                <Input type="text" id="RG_EMAIL"name="RG_EMAIL" onChange={this.onChangeGITAssessors}/>
+                <Input type="text" id="RG_EMAIL"name="RG_EMAIL" onChange={this.onChangeGITAssessors} value={this.state.RGEMAIL}/>
                 </Col>
 
                 <Col xs='2'>
@@ -1257,7 +1507,7 @@ class CreateBE extends Component {
                             <Row>
                             <Col xs='5'>
                             <Label>Solution & Design</Label>
-                            <Input type="text" id="REQ_TOTAL_TAGCOST_TM"name="solutionDREQ_TOTAL_TAGCOST_TMesign"/>
+                            <Input type="text" id="REQ_TOTAL_TAGCOST_TM"name="REQ_TOTAL_TAGCOST_TM"/>
                             <Label>Build</Label>
                             <Input type="text" id="REQ_BUILD_TM"name="REQ_BUILD_TM"/>
                             </Col>
@@ -1361,7 +1611,7 @@ class CreateBE extends Component {
                             </thead>
                             <tbody>
                             {
-                                Object.values(reqSysTM).map((d,index)=>{
+                              reqSysTM ?  Object.values(reqSysTM).map((d,index)=>{
                                     return(<tr>
                                     <td>
                                       {index+1}  
@@ -1374,7 +1624,7 @@ class CreateBE extends Component {
                                     </td>
                                 </tr>
                                 )
-                                })
+                                }) : ""
                             }
                             </tbody>
                             </Table>
@@ -1396,7 +1646,7 @@ class CreateBE extends Component {
                             </thead>
                             <tbody>
                             {
-                                Object.values(reqSysVendor).map((d,index)=>{
+                                reqSysVendor ? Object.values(reqSysVendor).map((d,index)=>{
                                     return(<tr>
                                     <td>
                                         {index+1}
@@ -1412,7 +1662,7 @@ class CreateBE extends Component {
                                     </td>
                                 </tr>
                                 )
-                                })
+                                }) : ""
                             }
                             </tbody>
                             </Table>
@@ -1566,6 +1816,7 @@ class CreateBE extends Component {
                   </Card>
                 </div>
               </CardBody>
+              </Form>
             </Card>
             </div>
 

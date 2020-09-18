@@ -11,6 +11,7 @@ import Clear from '@material-ui/icons/Clear';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
 import FilterList from '@material-ui/icons/FilterList';
+import { Button, Tooltip,Icon } from '@material-ui/core';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
@@ -49,7 +50,7 @@ componentDidMount(){
 
   render() {
     const columns=[
-      { title: 'REF #', field: 'REQ_REF_NO' },
+      // { title: 'REF #', field: 'REQ_REF_NO' },
       { title: 'IRIS REF #', field: 'REQ_REF_NO' },
       { title: 'NAME/ DESCRIPTION', field: 'REQ_REF_NAME'},
       { title: 'INITIATIVE NAME', field: 'REQ_REF_NAME'},
@@ -100,6 +101,43 @@ componentDidMount(){
         filtering: true,
         pageSize: 10,
         exportButton: true,
+      }}
+      actions={[
+        {
+          icon: 'view',
+          tooltip: 'View data',
+          onClick: (event, rowData) => console.log(rowData)
+          //(event, rowData) => alert("You saved " + rowData.LOCN_ID)
+        },
+       
+      ]}
+      components={{
+        Action: (props) => {
+           console.log('propsaction',props.data);
+           if( props.action.icon === 'view'){                               
+            return(<Link to={"/CreateBE/" + props.data.REQ_ID}>
+             { props.data.REQ_REF_NO}
+            </Link>)
+           }
+        }
+      }}
+      // other props
+      localization={{
+          // pagination: {
+          //     labelDisplayedRows: '{from}-{to} of {count}'
+          // },
+          // toolbar: {
+          //     nRowsSelected: '{0} row(s) selected'
+          // },
+          header: {
+              actions: 'REF #'
+          },
+          // body: {
+          //     emptyDataSourceMessage: 'No records to display',
+          //     filterRow: {
+          //         filterTooltip: 'Filter'
+          //     }
+          // }
       }}
     />
   </div>)
