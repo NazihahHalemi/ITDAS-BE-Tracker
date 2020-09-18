@@ -52,8 +52,8 @@ componentDidMount(){
     const columns=[
       // { title: 'REF #', field: 'REQ_REF_NO' },
       { title: 'IRIS REF #', field: 'REQ_REF_NO' },
-      { title: 'NAME/ DESCRIPTION', field: 'REQ_REF_NAME'},
-      { title: 'INITIATIVE NAME', field: 'REQ_REF_NAME'},
+      { title: 'NAME/ DESCRIPTION', field: 'REQ_DESC'},
+      { title: 'INITIATIVE NAME', field: 'REQ_SRPI_NAME'},
       { title: 'STATUS', field: 'REQ_STATUS'},
       { title: 'SYSTEM', field: 'REQ_SYSTEM'},
       { title: 'PLAN PBE NO', field: 'REQ_PLANPBENO'},
