@@ -4,56 +4,14 @@ export default {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
+      // badge: {
+      //   variant: 'info',
+      //   text: 'NEW',
+      // },
     },
-    // {
-    // //   name: 'Inventory',
-    //   url: '/inventory',
-    //   icon: 'icon-puzzle',
-    //   children: [
-    //     {
-    //       name: 'Rack',
-    //       url: '/rackList',
-    //       icon: 'icon-layers',
-    //     },
-    //     {
-    //       name: 'Netwrok Port',
-    //       url: '/network_port',
-    //       icon: 'icon-layers',
-    //     },
-    //     {
-    //       name: 'Network Bandwidth',
-    //       url: '/network_bandwidth',
-    //       icon: 'icon-layers',
-    //     },
-    //     {
-    //       name: 'UPS',
-    //       url: '/upsList',
-    //       icon: 'icon-layers',
-    //     },
-    //     {
-    //       name: 'PDU',
-    //       url: '/pduList',
-    //       icon: 'icon-layers',
-    //     },
-    //     {
-    //       name: 'CRAC',
-    //       url: '/CRACList',
-    //       icon: 'icon-layers',
-    //     },
-    //   ]
-    // },
-    // {
-    //   name: 'Resource Checking',
-    //   url: '/resourceChecking',
-    //   icon: 'icon-puzzle',
-    // },
     {
       name: 'ITDAS Tracker',
-      url: '/',
+      url: '/LandingPage',
       icon: 'icon-puzzle',
       children: [
         {
@@ -66,36 +24,7 @@ export default {
           url: '/CreateBE',
           icon: 'icon-layers',
         },
-        // {
-        //   name: 'Homepage',
-        //   url: '/Homepage',
-        //   icon: 'icon-layers',
-        // },
-        // {
-        //   name: 'Request List',
-        //   url: '/RequestList',
-        //   icon: 'icon-layers',
-        // },
-    //     {
-    //       name: 'Request Profile',
-    //       url: '/RequestProfile',
-    //       icon: 'icon-layers',
-    //     },
-    //   {
-    //     name: 'Requestor',
-    //     url: '/Requestor',
-    //     icon: 'icon-layers',
-    //   },
-      // {
-      //   name: 'Mandays Profile',
-      //   url: '/MandaysProfile',
-      //   icon: 'icon-layers',
-      // },
-    //   {
-    //     name: 'Budget Profile',
-    //     url: '/BudgetProfile',
-    //     icon: 'icon-layers',
-    //   },
+      
       ]
     },
   //   {
@@ -244,7 +173,7 @@ export default {
     //     },
     //   ],
     // },
-    // {
+    //  {
     //   name: 'Charts',
     //   url: '/charts',
     //   icon: 'icon-pie-chart',
