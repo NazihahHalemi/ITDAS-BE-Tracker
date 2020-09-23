@@ -61,12 +61,12 @@ class CreateBE extends Component {
     }
 
     componentDidMount(){
-      localStorage.setItem('requestorID', '100189')
+      //localStorage.setItem('requestorID', '100189')
         // console.log('testt');
         //generate requestor ID:
        //var reqID = localStorage.getItem('requestorID')
        //if(reqID === ""){
-       //this.generateRequestorID();
+       this.generateRequestorID();
       // }
        
        this.lovCategory();

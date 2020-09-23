@@ -14,7 +14,7 @@ const Summary = (props) => {
 
     useEffect(() => {
         var accessToken = localStorage.getItem('token');
-        axios.get('/api/ITD_DASHBOARD_LOB_STAT_BE',{
+        axios.get('/api/ITD_DASHBOARD_LOB_STAT_nonBE',{
             headers: {
               Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
             }
@@ -197,7 +197,7 @@ const Summary = (props) => {
     
     return (<Container>
             <Grid container>
-                <h2>SUMMARY OF BE BASED ON STATUS, LOBS AND NUMBERS OF BE</h2>
+                <h2>SUMMARY OF NON BE BASED ON STATUS, LOBS AND NUMBERS OF BE</h2>
                 <Bar 
                     data={barData} 
                     options={options}
@@ -222,6 +222,7 @@ const Summary = (props) => {
                                             <th>DESIGN</th>
                                             <th>BUILD</th>
                                             <th>TESTING</th>
+                                            <th>TOTAL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -268,7 +269,11 @@ const Summary = (props) => {
                                                             {data.TESTING}
 
                                                         </td>
+                                                        <td>
 
+                                                            {data.TOTAL}
+
+                                                            </td>
                                                     </tr>
 
                                                 ) : ""

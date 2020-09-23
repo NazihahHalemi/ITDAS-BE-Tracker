@@ -4,10 +4,34 @@ export default {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      // badge: {
-      //   variant: 'info',
-      //   text: 'NEW',
-      // },
+     children:[
+       {
+        name: 'Sum of BE Status',
+        url: '/SummBEStatus',
+        icon: 'icon-layers',
+       },
+       {
+        name: 'Sum of BE Type',
+        url: '/SummBEType',
+        icon: 'icon-layers',
+       },
+       {
+        name: 'Sum of BE Complexity',
+        url: '/SummBEComplex',
+        icon: 'icon-layers',
+       },
+       {
+        name: 'Sum of Non BE Status',
+        url: '/SummNonBEStatus',
+        icon: 'icon-layers',
+       },
+       {
+        name: 'Sum of Non BE Type',
+        url: '/SummNonBEType',
+        icon: 'icon-layers',
+       },
+
+    ]
     },
     {
       name: 'ITDAS Tracker',

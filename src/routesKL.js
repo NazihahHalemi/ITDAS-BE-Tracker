@@ -59,12 +59,21 @@ const MandaysProfile = React.lazy(() => import('./views/ITDAS Tracker/MandaysPro
 const BudgetProfile = React.lazy(() => import('./views/ITDAS Tracker/BudgetProfile'));
 const RequestList = React.lazy(() => import('./views/ITDAS Tracker/listRequest'));
 const LandingPage = React.lazy(() => import('./views/ITDAS Tracker/LandingPage'));
-
+const Dashboard2 = React.lazy(() => import('./views/Dashboard/SummBE'));
+const Dashboard3 = React.lazy(() => import('./views/Dashboard/SummBEType'));
+const Dashboard4 = React.lazy(() => import('./views/Dashboard/SummBEComplexity'));
+const Dashboard5 = React.lazy(() => import('./views/Dashboard/SummNonBE'));
+const Dashboard6 = React.lazy(() => import('./views/Dashboard/SummNonBEType'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/summBEStatus', name: 'Summary of BE Status', component: Dashboard2 },
+  { path: '/summBEType', name: 'Summary of BE Type', component: Dashboard3 },
+  { path: '/summBEComplex', name: 'Summary of BE Complexity', component: Dashboard4 },
+  { path: '/summNonBEStatus', name: 'Summary of Non BE Status', component: Dashboard5 },
+  { path: '/summNonBEType', name: 'Summary of Non BE Type', component: Dashboard6 },
   { path: '/inventory', exact: true, name: 'Inventory', component: RackList },
   { path: '/rackList', name: 'Rack List', component: RackList },
   { path: '/rack', name: 'Rack', component: Rack },

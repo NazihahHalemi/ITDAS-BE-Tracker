@@ -27,6 +27,8 @@ class Auth {
     logout(cb) {
       this.authenticated.status = false;
       this.authenticated.region = ""
+      localStorage.removeItem("token");
+      localStorage.removeItem("requestorID");
       cb();
     }
   

@@ -14,7 +14,7 @@ const Summary = (props) => {
 
     useEffect(() => {
         var accessToken = localStorage.getItem('token');
-        axios.get('/api/ITD_DASHBOARD_LOB_STAT_BE',{
+        axios.get('/api/ITD_DASHBOARD_LOB_nonBE_TYPE',{
             headers: {
               Authorization: 'Bearer ' + accessToken //the token is a variable which holds the token
             }
@@ -36,40 +36,30 @@ const Summary = (props) => {
 
 
     const makeBar = (data) => {
-        console.log('makeBar',data);
+        console.log('makeBar2',data);
         ///data
-          var Data = [],
-              Data2 = [],
-              Data3 = [],
-              Data4 = [],
-              Data5 = [],
-              Data6 = [];
+          var Data = [];
+            
         //label
           var LabelX = [],
-              LabelY =['OPEN','REQUIREMENT','ASSESSMENT','APPROVAL', 'DESIGN', 'BUILD','TESTING'],
+              LabelY =['CONSULTANCY','PROJECT','INITIATIVE'],
               LabelY1 = [],
               LabelY2 = [],
-              LabelY3 = [],
-              LabelY4 = [],
-              LabelY5 = [],
-              LabelY6 = [],
-              LabelY7 = [];
+              LabelY3 = [];
+              
 
 
         data.map((d) => {
-          console.log('data',d.LOB[0]);
+          console.log('data',d.LOB);
           ///data
             Data.push(d.LOB);
            
             //label
             LabelX.push(d.TOTAL);
-            LabelY1.push(d.OPEN);
-            LabelY2.push(d.REQUIREMENT);
-            LabelY3.push(d.ASSESSMENT);
-            LabelY4.push(d.APPROVAL);
-            LabelY5.push(d.DESIGN);
-            LabelY6.push(d.BUILD);
-            LabelY7.push(d.TESTING);
+            LabelY1.push(d.CONSULTANCY);
+            LabelY2.push(d.PROJECT);
+            LabelY3.push(d.INITIATIVE);
+           
         });
 
         const arbitraryStackKey = "stack"; /**to make stack bar */
@@ -82,7 +72,7 @@ const Summary = (props) => {
                     label: Data[0],
                     indexLabel: LabelX,
                     backgroundColor: 'rgba(0, 20, 187)',
-                    data: LabelY1,LabelY2,LabelY3,LabelY4,LabelY5,LabelY6,LabelY6
+                    data: LabelY1
                   },
                   {
                     stack: arbitraryStackKey,
@@ -94,38 +84,46 @@ const Summary = (props) => {
                   {
                     stack: arbitraryStackKey,
                     label: Data[2],
-                    //indexLabel: Data[2],
-                    backgroundColor: 'rgba(22, 160, 133)',
+                    indexLabel: LabelX,
+                    backgroundColor: 'rgba(0, 20, 187)',
                     data: LabelY3
                   },
                   {
                     stack: arbitraryStackKey,
                     label: Data[3],
-                    //indexLabel: Data[3],
-                    backgroundColor: 'rgba(118, 68, 138)',
-                    data: LabelY4
+                    //indexLabel: Data[1],
+                    backgroundColor: 'rgba(248, 111, 27)',
+                    data: LabelY1
                   },
                   {
                     stack: arbitraryStackKey,
                     label: Data[4],
-                    //indexLabel: Data[4],
-                    backgroundColor: 'rgba(133, 193, 233)',
-                    data: LabelY5
+                    indexLabel: LabelX,
+                    backgroundColor: 'rgba(0, 20, 187)',
+                    data: LabelY2
                   },
                   {
                     stack: arbitraryStackKey,
                     label: Data[5],
-                    //indexLabel: Data[5],
-                    backgroundColor: 'rgba(246, 232, 59 )',
-                    data: LabelY6
+                    //indexLabel: Data[1],
+                    backgroundColor: 'rgba(248, 111, 27)',
+                    data: LabelY3
                   },
                   {
                     stack: arbitraryStackKey,
                     label: Data[6],
-                    //indexLabel: Data[6],
-                    backgroundColor: 'rgba(252, 146, 209 )',
-                    data: LabelY7
+                    //indexLabel: Data[1],
+                    backgroundColor: 'rgba(248, 111, 27)',
+                    data: LabelY1
                   },
+                  {
+                    stack: arbitraryStackKey,
+                    label: Data[7],
+                    //indexLabel: Data[1],
+                    backgroundColor: 'rgba(248, 111, 27)',
+                    data: LabelY2
+                  },
+              
                 //   {
                 //     stack: arbitraryStackKey,
                 //     label: 'RRM',
@@ -197,7 +195,7 @@ const Summary = (props) => {
     
     return (<Container>
             <Grid container>
-                <h2>SUMMARY OF BE BASED ON STATUS, LOBS AND NUMBERS OF BE</h2>
+                <h2>SUMMARY OF NON BE by BE TYPE</h2>
                 <Bar 
                     data={barData} 
                     options={options}
@@ -215,13 +213,10 @@ const Summary = (props) => {
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>OPEN</th>
-                                            <th>REQUIREMENT</th>
-                                            <th>ASSESSMENT</th>
-                                            <th>APPROVAL</th>
-                                            <th>DESIGN</th>
-                                            <th>BUILD</th>
-                                            <th>TESTING</th>
+                                            <th>CONSULTANCY</th>
+                                            <th>PROJECT</th>
+                                            <th>INITIATIVE</th>
+                                            <th>TOTAL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -236,39 +231,24 @@ const Summary = (props) => {
 
                                                         </td>
                                                         <td>
-                                                            {data.OPEN}
+                                                            {data.CONSULTANCY}
 
                                                         </td>
                                                         <td>
-                                                            {data.REQUIREMENT}
-
-                                                        </td>
-                                                        <td>
-
-                                                            {data.ASSESSMENT}
+                                                            {data.PROJECT}
 
                                                         </td>
                                                         <td>
 
-                                                            {data.APPROVAL}
+                                                            {data.INITIATIVE}
 
                                                         </td>
                                                         <td>
 
-                                                        {data.DESIGN}
+                                                            {data.TOTAL}
 
                                                         </td>
-                                                        <td>
-
-                                                            {data.BUILD}
-
-                                                        </td>
-                                                        <td>
-
-                                                            {data.TESTING}
-
-                                                        </td>
-
+                                                        
                                                     </tr>
 
                                                 ) : ""

@@ -222,6 +222,7 @@ const Summary = (props) => {
                                             <th>DESIGN</th>
                                             <th>BUILD</th>
                                             <th>TESTING</th>
+                                            <th>TOTAL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -268,7 +269,11 @@ const Summary = (props) => {
                                                             {data.TESTING}
 
                                                         </td>
+                                                        <td>
 
+                                                            {data.TOTAL}
+
+                                                            </td>
                                                     </tr>
 
                                                 ) : ""
