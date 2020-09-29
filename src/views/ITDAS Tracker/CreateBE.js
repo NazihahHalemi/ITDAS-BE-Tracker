@@ -1187,14 +1187,14 @@ class CreateBE extends Component {
                 <Col xs='3'>
                 <FormControl hidden={true}>
                 <Label>Requestor ID</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_ID"name="REQ_ID" value={reqID} readOnly/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_ID" name="REQ_ID" value={reqID} readOnly/>
                 </FormControl>
                 <Label>Reference #</Label>
-                <Input type="text"  style={{backgroundColor: '##ABB2B9'}}id="REQ_REF_NO"name="REQ_REF_NO" value={requestBE ? requestBE.REQ_REF_NO : this.state.refNo } readOnly/>
+                <Input type="text"  style={{backgroundColor: '##ABB2B9'}} id="REQ_REF_NO" name="REQ_REF_NO" value={requestBE ? requestBE.REQ_REF_NO : this.state.refNo } readOnly/>
                 <Label>Ext Ref # (IRIS No/Proj No)</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_EXT_NO" name="REQ_EXT_NO" value={requestBE.REQ_EXT_NO}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_EXT_NO" name="REQ_EXT_NO" value={ requestBE ?  requestBE.REQ_EXT_NO : ""}/>
                 <Label >Category</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CATEGORY" id="REQ_CATEGORY" value={requestBE.REQ_CATEGORY} onChange={this.lovCatType}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CATEGORY" id="REQ_CATEGORY" value={ requestBE ? requestBE.REQ_CATEGORY : ""} onChange={this.lovCatType}>
                 <option value="">Please select</option>
                         {
                            Object.values(category).map((d)=>{
@@ -1210,7 +1210,7 @@ class CreateBE extends Component {
                         <option value="non-product">Non-Product</option> */}
                         {
                            requestBE ? 
-                           <option key={requestBE.REQ_TYPE} value={requestBE.REQ_TYPE}>{requestBE.REQ_TYPE}</option>
+                           <option key={requestBE.REQ_TYPE} value={requestBE ? requestBE.REQ_TYPE : ""}>{requestBE.REQ_TYPE}</option>
                            :
                            Object.values(type).map((d)=>{
                             //console.log('data', d.LOV_VALUE)
@@ -1221,32 +1221,32 @@ class CreateBE extends Component {
    
                 </Input>
                 <Label>Agile</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_AGILE" id="REQ_AGILE" value={requestBE.REQ_AGILE}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_AGILE" id="REQ_AGILE" value={requestBE ? requestBE.REQ_AGILE : ""}>
                         <option value="">Please select</option>
                         <option value="YES">Yes</option>
                         <option value="NO">No</option>             
                 </Input>
                 <Label>AOP</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_AOP" id="REQ_AOP" value={requestBE.REQ_AOP}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_AOP" id="REQ_AOP" value={requestBE ? requestBE.REQ_AOP : ""}>
                         <option value="">Please select</option>
                         <option value="YES">Yes</option>
                         <option value="NO">No</option>       
                 </Input>
                 <Label>Ana Plan No/Ref. No</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_ANA_PLAN_REF_NO"name="REQ_ANA_PLAN_REF_NO" value={requestBE.REQ_ANA_PLAN_REF_NO}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_ANA_PLAN_REF_NO"name="REQ_ANA_PLAN_REF_NO" value={requestBE ? requestBE.REQ_ANA_PLAN_REF_NO : ""}/>
                 </Col>
 
                 <Col xs='3'>
                 <Label>Plan PBE No</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_PLAN_PBE_NO" name="REQ_PLAN_PBE_NO" value={requestBE.REQ_PLAN_PBE_NO}/>             
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_PLAN_PBE_NO" name="REQ_PLAN_PBE_NO" value={requestBE ? requestBE.REQ_PLAN_PBE_NO : ""}/>             
                 <Label>Plan PBE Date/RFS Date</Label>
-                <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_PLAN_PBE_DATE" name="REQ_PLAN_PBE_DATE" value={requestBE.REQ_PLAN_PBE_DATE}/>
+                <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_PLAN_PBE_DATE" name="REQ_PLAN_PBE_DATE" value={requestBE ? requestBE.REQ_PLAN_PBE_DATE : ""}/>
                 <Label>Actual PBE No</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_ACTUAL_PBE_NO" name="REQ_ACTUAL_PBE_NO" value={requestBE.REQ_ACTUAL_PBE_NO}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_ACTUAL_PBE_NO" name="REQ_ACTUAL_PBE_NO" value={requestBE ? requestBE.REQ_ACTUAL_PBE_NO : ""}/>
                 <Label>Actual PBE Date/RFS Date</Label>
-                <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_ACTUAL_PBE_DATE" name="REQ_ACTUAL_PBE_DATE" value={requestBE.REQ_ACTUAL_PBE_DATE}/>
+                <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_ACTUAL_PBE_DATE" name="REQ_ACTUAL_PBE_DATE" value={requestBE ? requestBE.REQ_ACTUAL_PBE_DATE : ""}/>
                 <Label>Quarterly Plan RFS Date</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_QTR_PLAN_RFS" id="REQ_QTR_PLAN_RFS" value={requestBE.REQ_QTR_PLAN_RFS}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_QTR_PLAN_RFS" id="REQ_QTR_PLAN_RFS" value={requestBE ? requestBE.REQ_QTR_PLAN_RFS : ""}>
                         <option value="">Please select</option>
                         <option value="Q1">Q1</option>
                         <option value="Q2">Q2</option>
@@ -1257,11 +1257,11 @@ class CreateBE extends Component {
 
                 <Col xs='3'>
                 <Label >Name/Description</Label>
-                <Input type="textarea"  style={{backgroundColor: '#EAEDED '}} id="REQ_DESC"name="REQ_DESC" value={requestBE.REQ_DESC}/>
+                <Input type="textarea"  style={{backgroundColor: '#EAEDED '}} id="REQ_DESC"name="REQ_DESC" value={requestBE ? requestBE.REQ_DESC : ""}/>
                 <Label >Remarks/Benefit</Label>
-                <Input type="textarea"  style={{backgroundColor: '#EAEDED '}} id="REQ_REMARKS"name="REQ_REMARKS" value={requestBE.REQ_REMARKS}/>
+                <Input type="textarea"  style={{backgroundColor: '#EAEDED '}} id="REQ_REMARKS"name="REQ_REMARKS" value={requestBE ? requestBE.REQ_REMARKS : ""}/>
                 <Label>System</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_SYSTEM" id="REQ_SYSTEM" value={requestBE.REQ_SYSTEM}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_SYSTEM" id="REQ_SYSTEM" value={requestBE ? requestBE.REQ_SYSTEM : ""}>
                         <option value="">Please select</option>
                         {
                   Object.values(system).map((d)=>{
@@ -1273,9 +1273,9 @@ class CreateBE extends Component {
                 </Col>
                 <Col xs='3'>
                 <Label>System/Ref/Project/Initiative Name</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_SRPI_NAME"name="REQ_SRPI_NAME" value={requestBE.REQ_SRPI_NAME}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_SRPI_NAME"name="REQ_SRPI_NAME" value={requestBE ?  requestBE.REQ_SRPI_NAME : ""}/>
                 <Label>Status</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_STATUS" id="REQ_STATUS" value={requestBE.REQ_STATUS}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_STATUS" id="REQ_STATUS" value={requestBE ? requestBE.REQ_STATUS : ""}>
                 <option value="">Please select</option>
                         {
                   Object.values(status).map((d)=>{
@@ -1285,7 +1285,7 @@ class CreateBE extends Component {
                 }
                 </Input>
                 <Label>Status Description</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_STATUS_DESC" id="REQ_STATUS_DESC" value={requestBE.REQ_STATUS_DESC}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_STATUS_DESC" id="REQ_STATUS_DESC" value={requestBE ? requestBE.REQ_STATUS_DESC : ""}>
                 <option value="">Please select</option>
                         {
                   Object.values(statusdesc).map((d)=>{
@@ -1450,7 +1450,7 @@ class CreateBE extends Component {
                   </Col>
                   <Col xs='3'>
                 <Label>Email Address</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="RQ_EMAIL"name="RQ_EMAIL" onChange={this.onChangeRequestor}  value={this.state.ReqEmail}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="RQ_EMAIL"name="RQ_EMAIL" onChange={this.onChangeRequestor}  value={this.state.ReqEmail}/>
                 </Col>
                 <Col xs='1' style={{marginLeft: '30px', marginTop: '25px'}}>
                 <Button block color="primary" type='button' onClick={this.addRequestor}> Add</Button>
@@ -1504,7 +1504,7 @@ class CreateBE extends Component {
                 <Row>
                 <Col xs='4'>
                   <Label>Consultant 1</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CONSULT_1" id="REQ_CONSULT_1" value={requestBE.REQ_CONSULT_1}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CONSULT_1" id="REQ_CONSULT_1" value={requestBE ? requestBE.REQ_CONSULT_1 : ""}>
                 <option value="">Please select</option>
                   {
                            Object.values(consultant).map((d)=>{
@@ -1516,14 +1516,14 @@ class CreateBE extends Component {
                 </Col>
                 <Col xs='4'>
                 <Label>Tag Cost</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TAGCOST_1"name="REQ_TAGCOST_1" value={requestBE.REQ_TAGCOST_1}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TAGCOST_1"name="REQ_TAGCOST_1" value={requestBE ? requestBE.REQ_TAGCOST_1 : ""}/>
                 </Col>
                 </Row>
 
                 <Row>
                 <Col xs='4'>
                 <Label>Consultants 2</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CONSULT_2" id="REQ_CONSULT_2" value={requestBE.REQ_CONSULT_2}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CONSULT_2" id="REQ_CONSULT_2" value={requestBE ? requestBE.REQ_CONSULT_2 : ""}>
                 <option value="">Please select</option>
                   {
                            Object.values(consultant).map((d)=>{
@@ -1536,14 +1536,14 @@ class CreateBE extends Component {
                 </Col>
                 <Col xs='4'>
                 <Label>Tag Cost</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TAGCOST_2"name="REQ_TAGCOST_2" value={requestBE.REQ_TAGCOST_2}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TAGCOST_2"name="REQ_TAGCOST_2" value={requestBE ? requestBE.REQ_TAGCOST_2 : ""}/>
                 </Col>
                 </Row>
 
                 <Row>
                 <Col xs='4'>
                 <Label>Consultants 3</Label>
-                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CONSULT_3" id="REQ_CONSULT_3" value={requestBE.REQ_CONSULT_3}>
+                <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_CONSULT_3" id="REQ_CONSULT_3" value={requestBE ? requestBE.REQ_CONSULT_3 : ""}>
                 <option value="">Please select</option>
                   {
                            Object.values(consultant).map((d)=>{
@@ -1555,7 +1555,7 @@ class CreateBE extends Component {
                 </Col>
                 <Col xs='4'>
                 <Label>Tag Cost</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TAGCOST_3"name="REQ_TAGCOST_3" value={requestBE.REQ_TAGCOST_3}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TAGCOST_3"name="REQ_TAGCOST_3" value={requestBE ? requestBE.REQ_TAGCOST_3 : ""}/>
                 </Col>
               </Row>
             </CardBody>
@@ -1594,12 +1594,12 @@ class CreateBE extends Component {
                 
                 <Col xs='3'>
                 <Label>Email Address</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="RG_EMAIL"name="RG_EMAIL" onChange={this.onChangeGITAssessors} value={this.state.RGEMAIL}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="RG_EMAIL" name="RG_EMAIL" onChange={this.onChangeGITAssessors} value={this.state.RGEMAIL}/>
                 </Col>
 
                 <Col xs='2'>
                 <Label>Tag Cost</Label>
-                <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="RG_TAGCOST"name="RG_TAGCOST" onChange={this.onChangeGITAssessors}/>
+                <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="RG_TAGCOST"name="RG_TAGCOST" onChange={this.onChangeGITAssessors}/>
                 </Col>
                 <Col xs='1' style={{marginLeft: '30px', marginTop: '25px'}}>
                 <Button block color="primary" type="button" onClick={this.addGITAssessors}> Add</Button>
@@ -1662,7 +1662,7 @@ class CreateBE extends Component {
                             
                             <Col xs='3'>
                             <Label>PIP Pillar</Label>
-                            <Input type="select"  style={{backgroundColor: '#EAEDED '}} id="REQ_PIP_PILLAR"name="REQ_PIP_PILLAR" value={requestBE.REQ_PIP_PILLAR}>
+                            <Input type="select"  style={{backgroundColor: '#EAEDED '}} id="REQ_PIP_PILLAR"name="REQ_PIP_PILLAR" value={requestBE ? requestBE.REQ_PIP_PILLAR : ""}>
                             <option value="0">Please select</option>
                             {
                             Object.values(pillar).map((d)=>{
@@ -1675,13 +1675,13 @@ class CreateBE extends Component {
 
                             <Col xs='2'>
                             <Label>RM</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_PIP_PILLAR_REVENUE"name="REQ_PIP_PILLAR_REVENUE" placeholder="RM" value={requestBE.REQ_PIP_PILLAR_REVENUE}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_PIP_PILLAR_REVENUE"name="REQ_PIP_PILLAR_REVENUE" placeholder="RM" value={requestBE ? requestBE.REQ_PIP_PILLAR_REVENUE : ""}/>
                             <FormText className="help-block">Please Input RM Figure for PIP Pillar Revenue Generation</FormText>
                             </Col>
 
                             <Col xs='3'>
                             <Label>MD Category</Label>
-                            <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MD_CATEGORY" id="REQ_MD_CATEGORY" value={requestBE.REQ_MD_CATEGORY}>
+                            <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MD_CATEGORY" id="REQ_MD_CATEGORY" value={requestBE ? requestBE.REQ_MD_CATEGORY : ""}>
                                     <option value="0">Please select</option>
                                     <option value="Simple">Simple (less or equal 50)</option>
                                     <option value="Medium">Medium (less or equal 250)</option>
@@ -1691,12 +1691,12 @@ class CreateBE extends Component {
 
                             <Col xs='2'>
                             <Label>Ballpark TM</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BALLPARK_TM" name="REQ_BALLPARK_TM" value={requestBE.REQ_BALLPARK_TM}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BALLPARK_TM" name="REQ_BALLPARK_TM" value={requestBE ? requestBE.REQ_BALLPARK_TM : ""}/>
                             </Col> 
 
                             <Col xs='2'>
                             <Label>Ballpark Vendor</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BALLPARK_VENDOR" name="REQ_BALLPARK_VENDOR" value={requestBE.REQ_BALLPARK_VENDOR}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BALLPARK_VENDOR" name="REQ_BALLPARK_VENDOR" value={requestBE ? requestBE.REQ_BALLPARK_VENDOR : ""}/>
                             </Col> 
 
                             <Col xs="12" sm="6" md="6">
@@ -1708,15 +1708,15 @@ class CreateBE extends Component {
                             <Row>
                             <Col xs='5'>
                             <Label>Solution & Design</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TOTAL_TAGCOST_TM"name="REQ_TOTAL_TAGCOST_TM" value={requestBE.REQ_TOTAL_TAGCOST_TM}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TOTAL_TAGCOST_TM"name="REQ_TOTAL_TAGCOST_TM" value={requestBE ? requestBE.REQ_TOTAL_TAGCOST_TM : ""}/>
                             <Label>Build</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BUILD_TM"name="REQ_BUILD_TM" value={requestBE.REQ_BUILD_TM}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUILD_TM"name="REQ_BUILD_TM" value={requestBE ? requestBE.REQ_BUILD_TM : ""}/>
                             </Col>
                             <Col xs='5'>
                             <Label>Test</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TEST_TM"name="REQ_TEST_TM" value={requestBE.REQ_TEST_TM}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TEST_TM"name="REQ_TEST_TM" value={requestBE ? requestBE.REQ_TEST_TM : ""}/>
                             <Label>Total IA</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TOTAL_IA_TM"name="REQ_TOTAL_IA_TM" value={requestBE.REQ_TOTAL_IA_TM}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TOTAL_IA_TM"name="REQ_TOTAL_IA_TM" value={requestBE ? requestBE.REQ_TOTAL_IA_TM : ""}/>
                             </Col>
                             </Row>
                             </CardBody>
@@ -1732,15 +1732,15 @@ class CreateBE extends Component {
                             <Row>
                             <Col xs='5'>
                             <Label>Solution & Design</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TOTAL_TAGCOST_EXT"name="REQ_TOTAL_TAGCOST_EXT" value={requestBE.REQ_TOTAL_TAGCOST_EXT}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TOTAL_TAGCOST_EXT"name="REQ_TOTAL_TAGCOST_EXT" value={requestBE ? requestBE.REQ_TOTAL_TAGCOST_EXT : ""}/>
                             <Label>Build</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BUILD_EXT"name="REQ_BUILD_EXT" value={requestBE.REQ_BUILD_EXT}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUILD_EXT"name="REQ_BUILD_EXT" value={requestBE ? requestBE.REQ_BUILD_EXT : ""}/>
                             </Col>
                             <Col xs='5'>
                             <Label>Test</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TEST_EXT"name="REQ_TEST_EXT" value={requestBE.REQ_TEST_EXT}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TEST_EXT"name="REQ_TEST_EXT" value={requestBE ? requestBE.REQ_TEST_EXT : ""}/>
                             <Label>Total IA</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_TOTAL_IA_EXT"name="REQ_TOTAL_IA_EXT" value={requestBE.REQ_TOTAL_IA_EXT}/>
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_TOTAL_IA_EXT"name="REQ_TOTAL_IA_EXT" value={requestBE ? requestBE.REQ_TOTAL_IA_EXT : ""}/>
                             </Col>
                             </Row>
                             </CardBody>
@@ -1765,7 +1765,7 @@ class CreateBE extends Component {
                             </Col>
                             <Col xs='3'>
                             <Label>Mandays</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="IM_MANDAYS"name="IM_MANDAYS" onChange={this.onChangeSysTM} />
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="IM_MANDAYS"name="IM_MANDAYS" onChange={this.onChangeSysTM} />
                             </Col>
 
                             {/** add system EXTERNAL */}
@@ -1781,7 +1781,7 @@ class CreateBE extends Component {
                             }
                             </Input>
                             <Label>Mandays</Label>
-                            <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="IV_MANDAYS"name="IV_MANDAYS" onChange={this.onChangeSysVendor} />
+                            <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="IV_MANDAYS"name="IV_MANDAYS" onChange={this.onChangeSysVendor} />
                             </Col>
                             <Col xs='3'>
                             <Label>Systems</Label>
@@ -1875,7 +1875,7 @@ class CreateBE extends Component {
                             <strong>Grand Total IA</strong>
                             <FormText className="help-block">Total IA (TM) + Total IA (External)</FormText>
                             </Col>
-                            <Col xs='3'><Input type="text"  style={{backgroundColor: '#EAEDED '}}id="impactedSystem"name="impactedSystem" /></Col>
+                            <Col xs='3'><Input type="text"  style={{backgroundColor: '#EAEDED '}} id="impactedSystem"name="impactedSystem" /></Col>
                             
                         </Row>
                       </CardBody>
@@ -1895,23 +1895,23 @@ class CreateBE extends Component {
                       <Row>
                         <Col xs='2'>
                         <Label>Budget Memo Date</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_MEMO_DATE"name="REQ_BUDGET_MEMO_DATE" value={requestBE.REQ_BUDGET_MEMO_DATE}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_MEMO_DATE"name="REQ_BUDGET_MEMO_DATE" value={requestBE ? requestBE.REQ_BUDGET_MEMO_DATE : ""}/>
                         </Col>
                         <Col xs='2'>
                         <Label>Budget Memo Amount</Label>
-                        <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BUDGET_MEMO_AMT"name="REQ_BUDGET_MEMO_AMT" placeholder="RM" value={requestBE.REQ_BUDGET_MEMO_AMT}/>
+                        <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_MEMO_AMT"name="REQ_BUDGET_MEMO_AMT" placeholder="RM" value={requestBE ? requestBE.REQ_BUDGET_MEMO_AMT : ""}/>
                         </Col>
                         <Col xs='2'>
                         <Label>Budget Transfer Date</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_TRANSFER_DATE"name="REQ_BUDGET_TRANSFER_DATE" value={requestBE.REQ_BUDGET_TRANSFER_DATE}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_TRANSFER_DATE"name="REQ_BUDGET_TRANSFER_DATE" value={requestBE ? requestBE.REQ_BUDGET_TRANSFER_DATE : ""}/>
                         </Col>
                         <Col xs='3'>
                         <Label>Budget Transfer Man Days</Label>
-                        <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BUDGET_TRANSFER_MDY"name="REQ_BUDGET_TRANSFER_MDY" value={requestBE.REQ_BUDGET_TRANSFER_MDY}/>
+                        <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_TRANSFER_MDY"name="REQ_BUDGET_TRANSFER_MDY" value={requestBE ? requestBE.REQ_BUDGET_TRANSFER_MDY : ""}/>
                         </Col>
                         <Col xs='3'>
                         <Label>Budget Transfer Amount</Label>
-                        <Input type="text"  style={{backgroundColor: '#EAEDED '}}id="REQ_BUDGET_TRANSFER_AMT"name="REQ_BUDGET_TRANSFER_AMT" placeholder="RM" value={requestBE.REQ_BUDGET_TRANSFER_AMT}/>
+                        <Input type="text"  style={{backgroundColor: '#EAEDED '}} id="REQ_BUDGET_TRANSFER_AMT"name="REQ_BUDGET_TRANSFER_AMT" placeholder="RM" value={requestBE ? requestBE.REQ_BUDGET_TRANSFER_AMT : ""}/>
                         </Col>
                         </Row>
                         
@@ -1922,7 +1922,7 @@ class CreateBE extends Component {
                         <Row>
                         <Col xs='3'>
                         <Label>Advise Requestor To Sent MOT</Label>
-                        <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MOT_ADVISE" id="REQ_MOT_ADVISE" value={requestBE.REQ_MOT_ADVISE}>
+                        <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MOT_ADVISE" id="REQ_MOT_ADVISE" value={requestBE ? requestBE.REQ_MOT_ADVISE : ""}>
                         <option value="">Please select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -1930,7 +1930,7 @@ class CreateBE extends Component {
                         </Col>
                         <Col xs='3'>
                         <Label>MOT Send to User</Label>
-                        <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MOT_SEND_USER" id="REQ_MOT_SEND_USER" value={requestBE.REQ_MOT_SEND_USER}>
+                        <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MOT_SEND_USER" id="REQ_MOT_SEND_USER" value={requestBE ? requestBE.REQ_MOT_SEND_USER : ""}>
                         <option value="">Please select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -1938,7 +1938,7 @@ class CreateBE extends Component {
                         </Col>
                         <Col xs='3'>
                         <Label>Date Sending</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_MOT_DATE_SEND"name="REQ_MOT_DATE_SEND" value={requestBE.REQ_MOT_DATE_SEND}/>    
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_MOT_DATE_SEND"name="REQ_MOT_DATE_SEND" value={requestBE ? requestBE.REQ_MOT_DATE_SEND : ""}/>    
                         </Col>
                 </Row>
                 </CardBody>
@@ -1948,7 +1948,7 @@ class CreateBE extends Component {
                         <Row>
                         <Col xs='3'>
                         <Label>MOT Received</Label>
-                        <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MOT_RECEIVED" id="REQ_MOT_RECEIVED" value={requestBE.REQ_MOT_RECEIVED}>
+                        <Input type="select"  style={{backgroundColor: '#EAEDED '}} name="REQ_MOT_RECEIVED" id="REQ_MOT_RECEIVED" value={requestBE ? requestBE.REQ_MOT_RECEIVED : ""}>
                         <option value="">Please select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -1956,7 +1956,7 @@ class CreateBE extends Component {
                         </Col>
                         <Col xs='6'>
                         <Label>Remarks</Label>
-                        <Input type="textarea"  style={{backgroundColor: '#EAEDED '}} id="REQ_MOT_REMARK" name="REQ_MOT_REMARK" value={requestBE.REQ_MOT_REMARK}/>   
+                        <Input type="textarea"  style={{backgroundColor: '#EAEDED '}} id="REQ_MOT_REMARK" name="REQ_MOT_REMARK" value={requestBE ? requestBE.REQ_MOT_REMARK : ""}/>   
                         </Col>
                 </Row>
                 </CardBody>
@@ -1970,9 +1970,9 @@ class CreateBE extends Component {
                         <Row>
                         <Col xs='3'>
                         <Label>Request Date</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_REQUEST_DATE"name="REQ_REQUEST_DATE" value={requestBE.REQ_REQUEST_DATE}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_REQUEST_DATE"name="REQ_REQUEST_DATE" value={requestBE ? requestBE.REQ_REQUEST_DATE : ""}/>
                         <Label>BE Received Date</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_BE_RECEIVED"name="REQ_BE_RECEIVED" value={requestBE.REQ_BE_RECEIVED}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_BE_RECEIVED"name="REQ_BE_RECEIVED" value={requestBE ? requestBE.REQ_BE_RECEIVED : ""}/>
                         </Col>
 
                         <Col xs="12" sm="6" md="4">
@@ -1983,9 +1983,9 @@ class CreateBE extends Component {
                         <CardBody>
                         <Col xs='8'>
                         <Label>ITDC Approved Ball Park</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_ITDC_BALLPARK"name="REQ_ITDC_BALLPARK" value={requestBE.REQ_ITDC_BALLPARK}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_ITDC_BALLPARK"name="REQ_ITDC_BALLPARK" value={requestBE ? requestBE.REQ_ITDC_BALLPARK : ""}/>
                         <Label>ITDC Approved Final</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_ITDC_APPROVE_FINAL"name="REQ_ITDC_APPROVE_FINAL" value={requestBE.REQ_ITDC_APPROVE_FINAL}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_ITDC_APPROVE_FINAL"name="REQ_ITDC_APPROVE_FINAL" value={requestBE ? requestBE.REQ_ITDC_APPROVE_FINAL : ""}/>
                         </Col>
                         </CardBody>
                         </Card>
@@ -1999,13 +1999,13 @@ class CreateBE extends Component {
                         <CardBody>
                         <Col xs='8'>
                         <Label>IBER Approved Ball Park</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_IBER_BALLPARK"name="REQ_IBER_BALLPARK" value={requestBE.REQ_IBER_BALLPARK}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_IBER_BALLPARK"name="REQ_IBER_BALLPARK" value={requestBE ? requestBE.REQ_IBER_BALLPARK : ""}/>
                         <Label>IBER Approved Final</Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_IBER_APPROVE_FINAL"name="REQ_IBER_APPROVE_FINAL" value={requestBE.REQ_IBER_APPROVE_FINAL}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_IBER_APPROVE_FINAL"name="REQ_IBER_APPROVE_FINAL" value={requestBE ? requestBE.REQ_IBER_APPROVE_FINAL : ""}/>
                         <Label>PCM1/PSC Approved </Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_PCM1_PSC_APPROVE"name="REQ_PCM1_PSC_APPROVE" value={requestBE.REQ_PCM1_PSC_APPROVE}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_PCM1_PSC_APPROVE"name="REQ_PCM1_PSC_APPROVE" value={requestBE ? requestBE.REQ_PCM1_PSC_APPROVE : ""}/>
                         <Label>PCM2/PSC Approved </Label>
-                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_PCM2_PSC_APPROVE"name="REQ_PCM2_PSC_APPROVE" value={requestBE.REQ_PCM2_PSC_APPROVE}/>
+                        <Input type="date"  style={{backgroundColor: '#EAEDED '}} id="REQ_PCM2_PSC_APPROVE"name="REQ_PCM2_PSC_APPROVE" value={requestBE ? requestBE.REQ_PCM2_PSC_APPROVE : ""}/>
                         </Col>
                         </CardBody>
                         </Card>

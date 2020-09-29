@@ -47,16 +47,16 @@ class Auth {
 
         if(username != ""){
 
-            fetch('/api/DC_USER/?userid='+ username.toUpperCase())
+            fetch('/api/ITD_USER/?userid='+ username.toUpperCase())
             .then(response => response.json())
             .then((user) => //console.log('user', user.user.length)
             {
-                if(!user.user.length){
+                if(!user.length){
                     Swal.fire({
                         width: '30%',
                         icon: 'error',
-                        title: 'Invalid DCO User',
-                        text: 'Login error, check with DCO Administrator!',
+                        title: 'Invalid ITDETA User',
+                        text: 'Login error, check with ITDETA Administrator!',
                         fontsize: '10px'
                         //footer: '<a href>Why do I have this issue?</a>'
                       })
@@ -90,7 +90,7 @@ class Auth {
             ).then((res) => {
              //console.log('res : ', res.data);  
              if(res.data.status === 'User Success Login'){
-               axios.get('/api/DC_USER/?userid='+user.toUpperCase(),
+               axios.get('/api/ITD_USER/?userid='+user.toUpperCase(),
                {
                 headers: {
                   Authorization: 'Bearer ' + res.data.accessToken //the token is a variable which holds the token
@@ -98,13 +98,13 @@ class Auth {
                }
                   ).then(resp => {
                         const token = localStorage.setItem('token', res.data.accessToken);
-                        //console.log('dc user',resp.data)               
-                        if(!resp.data.user.length){
+                        console.log('dc user',resp.data)               
+                        if(!resp.data){
                           Swal.fire({
                             width: '30%',
                             icon: 'error',
-                            title: 'Invalid DCO User',
-                            text: 'Login error, check with DC Administrator!',
+                            title: 'Invalid ITDETA User',
+                            text: 'Login error, check with ITDETA Administrator!',
                             fontsize: '10px'
                             //footer: '<a href>Why do I have this issue?</a>'
                           })

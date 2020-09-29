@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import auth from "../../../auth";
+import imgLogo from "../../../assets/img/brand/itdas.png";
+
 class Login extends Component {
 
 
@@ -46,14 +48,18 @@ class Login extends Component {
       <div className="app flex-row align-items-center">
         <Container>
           <Row className="justify-content-center">
-            <Col md="8">
+            <Col md="6">
               <CardGroup>
                 <Card className="p-4">
                   <CardBody>
+                    <div style={{textAlign: 'center'}}>
+                       <img src={imgLogo}/>
+                    </div>
                   {/* <span>{auth.isAuthenticated().ldapSearch}</span> */}
                     <Form /*action="/dco/login" method="post" */>
-                      <h1>Login</h1>
-                      <p className="text-muted">Sign In to your account</p>
+                      {/* <h1>Login</h1>
+                      <p className="text-muted">Sign In to your account</p> */}
+                      <br></br>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -86,7 +92,7 @@ class Login extends Component {
                     </Form>
                   </CardBody>
                 </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+                {/* <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
                   <CardBody className="text-center">
                     <div>
                       <h2>Sign up</h2>
@@ -97,7 +103,7 @@ class Login extends Component {
                       </Link>
                     </div>
                   </CardBody>
-                </Card>
+                </Card> */}
               </CardGroup>
             </Col>
           </Row>
