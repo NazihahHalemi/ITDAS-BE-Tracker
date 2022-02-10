@@ -39,7 +39,7 @@
     "ldapjs": "^1.0.2",
     "material-table": "^1.69.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
     "react-bootstrap-table-next": "^4.0.2",
